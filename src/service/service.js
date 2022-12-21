@@ -43,3 +43,12 @@ export function sortingName(a, b) {
   }
   return comparison;
 }
+
+export function getDateFormat(string) {
+  let date = new Date(string).getDate();
+  let month = new Date(string).getMonth();
+  let year = new Date(string).getFullYear();
+
+  let formatDate = `${year}-${month}-${date}`;
+  return formatDate;
+}
