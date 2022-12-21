@@ -1,4 +1,4 @@
-export const PAGE_SIZE = 5;
+export const PAGE_SIZE = 7;
 export const ITEM_PER_PAGE = 30;
 
 export const OPTION_DATA = [

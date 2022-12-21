@@ -8,7 +8,7 @@ const OffCanves = ({ filteredGameDetails, show, setShow }) => {
 
   return (
     <Offcanvas show={show} onHide={handleClose} placement="end">
-      <Offcanvas.Header closeButton>
+      <Offcanvas.Header closeButton className={classes.heading}>
         <Offcanvas.Title>
           {filteredGameDetails
             ? filteredGameDetails.visitor_team.name
