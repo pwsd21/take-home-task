@@ -1,26 +1,60 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
+import { sortingName } from "../../service/service";
 import Loading from "../loading/loading";
+import SortingDropDown from "../sortingDropdown/sortingDropdown";
 import classes from "./table.module.css";
 
 const ReactTable = ({ headers, data, setTeamId, setShow }) => {
   const [value, setValue] = useState("");
+  const [tableData, setTableData] = useState(data);
 
   const handleClick = (id) => {
     setTeamId(id);
     setShow(true);
   };
 
+  useEffect(() => {
+    setTableData([...data]);
+  }, [data]);
+
+  const handleSelect = (e) => {
+    const { value: optionValue } = e.target;
+    if (optionValue == 0) {
+      setTableData([...data]);
+    } else if (optionValue == 1) {
+      const sortByName = tableData.sort((a, b) => sortingName(a.name, b.name));
+      setTableData([...sortByName]);
+    } else if (optionValue == 2) {
+      const sortByCity = tableData.sort((a, b) => sortingName(a.city, b.city));
+      setTableData([...sortByCity]);
+    } else if (optionValue == 3) {
+      const sortByAbbreviation = tableData.sort((a, b) =>
+        sortingName(a.abbreviation, b.abbreviation)
+      );
+      setTableData([...sortByAbbreviation]);
+    } else if (optionValue == 4) {
+      const sortByConference = tableData.sort((a, b) =>
+        sortingName(a.conference, b.conference)
+      );
+      setTableData([...sortByConference]);
+    } else if (optionValue == 5) {
+      const sortByDivision = tableData.sort((a, b) =>
+        sortingName(a.division, b.division)
+      );
+      setTableData([...sortByDivision]);
+    }
+  };
+
   return (
     <div>
       <h2 className={classes.heading}>NBA TEAMS</h2>
-      <input
-        type="search"
-        className={classes.searchBar}
+      <SortingDropDown
         value={value}
-        onChange={(e) => setValue(e.target.value)}
+        setValue={setValue}
+        handleSelect={handleSelect}
       />
-      {data.length > 0 ? (
+      {tableData.length > 0 ? (
         <Table bordered hover>
           <thead className={classes.thead}>
             <tr>
@@ -34,9 +68,9 @@ const ReactTable = ({ headers, data, setTeamId, setShow }) => {
             </tr>
           </thead>
           <tbody>
-            {data
+            {tableData
               .filter((ele) => ele.name.includes(value))
-              .map((item, index) => {
+              ?.map((item, index) => {
                 return (
                   <tr key={item.id} onClick={() => handleClick(item.id)}>
                     {headers.map((header, index) => (
