@@ -1,4 +1,9 @@
 .searchBar {
+  background-image: url(./searchicon/searchIcon.png);
+  position: left;
+  padding-left: 30px;
+  background-size: 35px;
+  background-repeat: no-repeat;
   margin-bottom: 15px;
   border-radius: 10px;
 }

@@ -1,12 +1,13 @@
 import React from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import classes from "./offCanves.module.css";
 
 const OffCanves = ({ filteredGameDetails, show, setShow }) => {
   const handleClose = () => setShow(false);
 
   return (
     <Offcanvas show={show} onHide={handleClose} placement="end">
-      <Offcanvas.Header closeButton>
+      <Offcanvas.Header closeButton className={classes.heading}>
         <Offcanvas.Title>
           {filteredGameDetails
             ? filteredGameDetails.visitor_team.name
@@ -16,14 +17,20 @@ const OffCanves = ({ filteredGameDetails, show, setShow }) => {
       <Offcanvas.Body>
         {filteredGameDetails ? (
           <div>
-            <h4>{filteredGameDetails.home_team.full_name}</h4>
-            <p>Total Games in 2021: {filteredGameDetails.id}</p>
-            <h5>Random Game Details</h5>
-            <p>{filteredGameDetails.date}</p>
-            <p>{filteredGameDetails.visitor_team.name}</p>
-            <h5>{filteredGameDetails.home_team_score}</h5>
-            <p>{filteredGameDetails.home_team.name}</p>
-            <h6>{filteredGameDetails.visitor_team_score}</h6>
+            <div className={classes.side}>
+              <p>Team Full Name :</p>{" "}
+              <p>{filteredGameDetails.home_team.full_name}</p>
+            </div>
+
+            <p>Total Games in 2021 : {filteredGameDetails.id}</p>
+            <h6>Random Game Details : </h6>
+            <h6>Date : {filteredGameDetails.date}</h6>
+            <h6>Home Team : {filteredGameDetails.visitor_team.name}</h6>
+            <h6>Home Team Score : {filteredGameDetails.home_team_score}</h6>
+            <h6>Visitor Team : {filteredGameDetails.home_team.name}</h6>
+            <h6>
+              Visitor Team Score : {filteredGameDetails.visitor_team_score}
+            </h6>
           </div>
         ) : (
           <p>No data found</p>
