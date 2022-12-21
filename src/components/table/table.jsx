@@ -20,25 +20,26 @@ const ReactTable = ({ headers, data, setTeamId, setShow }) => {
 
   const handleSelect = (e) => {
     const { value: optionValue } = e.target;
-    if (optionValue == 0) {
+    const dropDownValues = Number(optionValue);
+    if (dropDownValues === 0) {
       setTableData([...data]);
-    } else if (optionValue == 1) {
+    } else if (dropDownValues === 1) {
       const sortByName = tableData.sort((a, b) => sortingName(a.name, b.name));
       setTableData([...sortByName]);
-    } else if (optionValue == 2) {
+    } else if (dropDownValues === 2) {
       const sortByCity = tableData.sort((a, b) => sortingName(a.city, b.city));
       setTableData([...sortByCity]);
-    } else if (optionValue == 3) {
+    } else if (dropDownValues === 3) {
       const sortByAbbreviation = tableData.sort((a, b) =>
         sortingName(a.abbreviation, b.abbreviation)
       );
       setTableData([...sortByAbbreviation]);
-    } else if (optionValue == 4) {
+    } else if (dropDownValues === 4) {
       const sortByConference = tableData.sort((a, b) =>
         sortingName(a.conference, b.conference)
       );
       setTableData([...sortByConference]);
-    } else if (optionValue == 5) {
+    } else if (dropDownValues === 5) {
       const sortByDivision = tableData.sort((a, b) =>
         sortingName(a.division, b.division)
       );
@@ -70,7 +71,7 @@ const ReactTable = ({ headers, data, setTeamId, setShow }) => {
           <tbody>
             {tableData
               .filter((ele) => ele.name.includes(value))
-              ?.map((item, index) => {
+              ?.map((item) => {
                 return (
                   <tr key={item.id} onClick={() => handleClick(item.id)}>
                     {headers.map((header, index) => (
