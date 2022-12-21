@@ -1,0 +1,8 @@
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.table {
+    padding: 150px;
+}

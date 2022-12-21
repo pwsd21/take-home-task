@@ -1,0 +1,1 @@
+export const HEADERS = ['Name', 'City', 'Abbreviation', 'Conference', 'Division'];
