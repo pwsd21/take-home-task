@@ -1,5 +1,7 @@
 import React from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import { getDateFormat } from "../../service/service";
+import classes from "./offcanvas.module.css";
 
 const OffCanves = ({ filteredGameDetails, show, setShow }) => {
   const handleClose = () => setShow(false);
@@ -16,14 +18,38 @@ const OffCanves = ({ filteredGameDetails, show, setShow }) => {
       <Offcanvas.Body>
         {filteredGameDetails ? (
           <div>
-            <h4>{filteredGameDetails.home_team.full_name}</h4>
-            <p>Total Games in 2021: {filteredGameDetails.id}</p>
-            <h5>Random Game Details</h5>
-            <p>{filteredGameDetails.date}</p>
-            <p>{filteredGameDetails.visitor_team.name}</p>
-            <h5>{filteredGameDetails.home_team_score}</h5>
-            <p>{filteredGameDetails.home_team.name}</p>
-            <h6>{filteredGameDetails.visitor_team_score}</h6>
+            <div className={classes.filterDetails}>
+              <p>Team Full Name:</p>
+              <p>{filteredGameDetails.home_team.full_name}</p>
+            </div>
+            <div className={classes.filterDetails}>
+              <p>Total Games in 2021:</p>
+              <p>{filteredGameDetails.id}</p>
+            </div>
+
+            <h3 className={classes.details}>Random Game Details:</h3>
+            <div className={classes.container}>
+              <div className={classes.filterDetails}>
+                <h5>Date</h5>
+                <h6>{getDateFormat(filteredGameDetails.date)}</h6>
+              </div>
+              <div className={classes.filterDetails}>
+                <h5>Home Team:</h5>
+                <h6>{filteredGameDetails.visitor_team.name}</h6>
+              </div>
+              <div className={classes.filterDetails}>
+                <h5>Home Team Score:</h5>
+                <h6>{filteredGameDetails.home_team_score}</h6>
+              </div>
+              <div className={classes.filterDetails}>
+                <h5>Visitor Team:</h5>
+                <h6>{filteredGameDetails.home_team.name}</h6>
+              </div>
+              <div className={classes.filterDetails}>
+                <h5>Visitor Team Score:</h5>
+                <h6>{filteredGameDetails.visitor_team_score}</h6>
+              </div>
+            </div>
           </div>
         ) : (
           <p>No data found</p>
