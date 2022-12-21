@@ -1,0 +1,15 @@
+.searchBar {
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
+
+.sorting {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.selectField {
+  padding: 5px;
+  border-radius: 10px;
+}
