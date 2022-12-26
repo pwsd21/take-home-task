@@ -8,7 +8,6 @@ const OffCanves = ({ filteredGameDetails, show, setShow, setColor }) => {
     setShow(false);
     setColor(null);
   };
-
   return (
     <Offcanvas show={show} onHide={handleClose} placement="end">
       <Offcanvas.Header className={classes.heading} closeButton>
@@ -23,7 +22,7 @@ const OffCanves = ({ filteredGameDetails, show, setShow, setColor }) => {
           <div>
             <div className={classes.filterDetails}>
               <p>Team Full Name:</p>
-              <p>{filteredGameDetails.home_team.full_name}</p>
+              <p>{filteredGameDetails.visitor_team.full_name}</p>
             </div>
             <div className={classes.filterDetails}>
               <p>Total Games in 2021:</p>
