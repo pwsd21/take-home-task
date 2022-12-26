@@ -15,6 +15,7 @@ export const AllTeamsDetail = () => {
   const [show, setShow] = useState(false);
   const [teamId, setTeamId] = useState(null);
   const [page, setPage] = useState(1);
+  const [color, setColor] = useState(null);
 
   filteredGameDetails = gamesDetails?.find(
     (item) => item.visitor_team.id === teamId
@@ -42,6 +43,8 @@ export const AllTeamsDetail = () => {
         setTeamId={setTeamId}
         setShow={setShow}
         data={teamDetails}
+        color={color}
+        setColor={setColor}
       />
       <PaginationComponent
         itemsCount={ITEM_PER_PAGE}
@@ -54,6 +57,7 @@ export const AllTeamsDetail = () => {
         filteredGameDetails={filteredGameDetails}
         show={show}
         setShow={setShow}
+        setColor={setColor}
       />
     </div>
   );
