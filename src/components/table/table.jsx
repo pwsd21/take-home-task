@@ -5,13 +5,18 @@ import Loading from "../loading/loading";
 import SortingDropDown from "../sortingDropdown/sortingDropdown";
 import classes from "./table.module.css";
 
-const ReactTable = ({ headers, data, setTeamId, setShow }) => {
+const ReactTable = ({ headers, data, setTeamId, setShow, color, setColor }) => {
   const [value, setValue] = useState("");
   const [tableData, setTableData] = useState(data);
 
   const handleClick = (id) => {
     setTeamId(id);
     setShow(true);
+    if (id === color) {
+      setColor(null);
+    } else {
+      setColor(id);
+    }
   };
 
   useEffect(() => {
@@ -70,10 +75,20 @@ const ReactTable = ({ headers, data, setTeamId, setShow }) => {
           </thead>
           <tbody>
             {tableData
-              .filter((ele) => ele.name.includes(value))
+              .filter((ele) =>
+                ele.name.toLowerCase().includes(value.toLowerCase())
+              )
               ?.map((item) => {
                 return (
-                  <tr key={item.id} onClick={() => handleClick(item.id)}>
+                  <tr
+                    key={item.id}
+                    onClick={() => handleClick(item.id)}
+                    style={
+                      color === item.id
+                        ? { backgroundColor: "#aeb0b1" }
+                        : { backgroundColor: "transparent" }
+                    }
+                  >
                     {headers.map((header, index) => (
                       <td key={index}>
                         <span>{item[header.toLowerCase()]}</span>

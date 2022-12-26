@@ -3,12 +3,15 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import { getDateFormat } from "../../service/service";
 import classes from "./offcanvas.module.css";
 
-const OffCanves = ({ filteredGameDetails, show, setShow }) => {
-  const handleClose = () => setShow(false);
+const OffCanves = ({ filteredGameDetails, show, setShow, setColor }) => {
+  const handleClose = () => {
+    setShow(false);
+    setColor(null);
+  };
 
   return (
     <Offcanvas show={show} onHide={handleClose} placement="end">
-      <Offcanvas.Header closeButton className={classes.heading}>
+      <Offcanvas.Header className={classes.heading} closeButton>
         <Offcanvas.Title>
           {filteredGameDetails
             ? filteredGameDetails.visitor_team.name
